@@ -7,48 +7,40 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,700;12..96,800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet"/>
 <style>
 :root{
-  --bg:#080d1c;--bg2:#0d1428;--surface:#0f1a35;
-  --border:rgba(148,163,255,0.08);--border2:rgba(148,163,255,0.16);
+  --bg:#080d1c;--bg2:#0d1428;
+  --border:rgba(148,163,255,0.07);--border2:rgba(148,163,255,0.15);
   --accent:#a78bfa;--accent2:#fbbf24;--accent3:#60a5fa;
-  --accent-dim:rgba(167,139,250,0.12);--accent2-dim:rgba(251,191,36,0.1);
+  --accent-dim:rgba(167,139,250,0.11);--accent2-dim:rgba(251,191,36,0.09);
   --text:#eef2ff;--muted:rgba(238,242,255,0.48);--muted2:rgba(238,242,255,0.22);
-  --nav-bg:rgba(8,13,28,0.88);
-  --card-bg:#090e1f;
-  --scroll-thumb:rgba(167,139,250,0.3);
-  --stat-border:rgba(148,163,255,0.1);
+  --nav-bg:rgba(8,13,28,0.88);--card-bg:#090e1f;
+  --scroll-thumb:rgba(167,139,250,0.28);--stat-border:rgba(148,163,255,0.09);
 }
 [data-theme="light"]{
-  --bg:#f0f4ff;--bg2:#e4ecff;--surface:#d8e4ff;
-  --border:rgba(99,102,241,0.1);--border2:rgba(99,102,241,0.2);
+  --bg:#f0f4ff;--bg2:#e4ecff;
+  --border:rgba(99,102,241,0.09);--border2:rgba(99,102,241,0.18);
   --accent:#6d28d9;--accent2:#b45309;--accent3:#1d4ed8;
-  --accent-dim:rgba(109,40,217,0.08);--accent2-dim:rgba(180,83,9,0.08);
+  --accent-dim:rgba(109,40,217,0.07);--accent2-dim:rgba(180,83,9,0.07);
   --text:#1e1b4b;--muted:rgba(30,27,75,0.52);--muted2:rgba(30,27,75,0.28);
-  --nav-bg:rgba(240,244,255,0.92);
-  --card-bg:#e8efff;
-  --scroll-thumb:rgba(109,40,217,0.25);
-  --stat-border:rgba(99,102,241,0.12);
+  --nav-bg:rgba(240,244,255,0.92);--card-bg:#e8efff;
+  --scroll-thumb:rgba(109,40,217,0.22);--stat-border:rgba(99,102,241,0.11);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Bricolage Grotesque',sans-serif;overflow-x:hidden;cursor:none;transition:background .35s,color .35s;}
-[data-theme="light"] body::after{opacity:.15;}
-body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.3;}
 
-#cd{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s,opacity .15s;}
-#cr{position:fixed;width:34px;height:34px;border:1px solid rgba(167,139,250,.4);border-radius:50%;pointer-events:none;z-index:99997;transform:translate(-50%,-50%);transition:border-color .2s;}
+/* FULL PAGE CANVAS */
+#bgcanvas{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
 
-.grid-bg{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:60px 60px;transition:opacity .35s;}
+/* NOISE */
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");pointer-events:none;z-index:9999;opacity:.28;}
+[data-theme="light"] body::after{opacity:.12;}
 
-.blob{position:fixed;border-radius:50%;filter:blur(140px);pointer-events:none;z-index:0;transition:background .35s;}
-.b1{width:700px;height:700px;background:rgba(124,58,237,.06);top:-200px;left:-200px;animation:bm 15s ease-in-out infinite;}
-.b2{width:500px;height:500px;background:rgba(245,158,11,.04);bottom:-100px;right:-100px;animation:bm 19s ease-in-out infinite reverse;}
-.b3{width:400px;height:400px;background:rgba(96,165,250,.04);top:40%;left:40%;animation:bm 23s ease-in-out infinite 5s;}
-[data-theme="light"] .b1{background:rgba(124,58,237,.07);}
-[data-theme="light"] .b2{background:rgba(245,158,11,.05);}
-@keyframes bm{0%,100%{transform:translate(0,0)}33%{transform:translate(35px,-28px)}66%{transform:translate(-18px,38px)}}
+/* CURSOR */
+#cd{position:fixed;width:8px;height:8px;background:var(--accent);border-radius:50%;pointer-events:none;z-index:99998;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .15s;}
+#cr{position:fixed;width:34px;height:34px;border:1px solid rgba(167,139,250,.38);border-radius:50%;pointer-events:none;z-index:99997;transform:translate(-50%,-50%);transition:border-color .2s;}
 
 /* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:var(--nav-bg);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .35s,border-color .35s;}
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1.1rem 3rem;background:var(--nav-bg);backdrop-filter:blur(22px);border-bottom:1px solid var(--border);transition:background .35s,border-color .35s;}
 .nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.14em;color:var(--accent);}
 .nav-center{display:flex;gap:2rem;}
 .nav-center a{color:var(--muted);text-decoration:none;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;font-weight:500;transition:color .2s;cursor:none;}
@@ -78,9 +70,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .btn-o:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px);}
 @keyframes fi{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
-/* CANVAS */
-.hero-right{position:relative;z-index:1;height:520px;animation:fi .8s .4s ease both;}
-#biocanvas{width:100%;height:100%;display:block;border-radius:12px;}
+/* HERO CANVAS */
+.hero-right{position:relative;z-index:2;height:520px;animation:fi .8s .4s ease both;}
+#herocanvas{width:100%;height:100%;display:block;border-radius:12px;}
 
 /* STATS */
 .stats-strip{position:relative;z-index:1;display:grid;grid-template-columns:repeat(4,1fr);background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .35s;}
@@ -101,7 +93,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .sec-title em{color:transparent;-webkit-text-stroke:1px var(--muted2);font-style:normal;}
 
 /* ABOUT */
-.about-s{background:var(--bg2);border-top:1px solid var(--border);transition:background .35s;}
+.about-s{background:rgba(13,20,40,0.85);border-top:1px solid var(--border);}
+[data-theme="light"] .about-s{background:rgba(228,236,255,0.88);}
 .ag{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;}
 .ab{font-size:.9rem;line-height:1.9;color:var(--muted);}
 .ab p{margin-bottom:1.1rem;}
@@ -121,10 +114,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .fbtn:hover:not(.active){border-color:var(--accent);color:var(--accent);}
 
 /* PROJECTS */
+.projects-s{background:rgba(8,13,28,0.82);}
+[data-theme="light"] .projects-s{background:rgba(240,244,255,0.82);}
 .pg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);}
-.pc{background:var(--card-bg);padding:1.8rem;position:relative;overflow:hidden;transition:background .2s;cursor:none;}
+.pc{background:rgba(9,14,31,0.92);padding:1.8rem;position:relative;overflow:hidden;transition:background .2s;cursor:none;}
+[data-theme="light"] .pc{background:rgba(232,239,255,0.92);}
 .pc::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,var(--accent),var(--accent2),transparent);transform:scaleX(0);transform-origin:left;transition:transform .3s;}
-.pc:hover{background:var(--bg2);}
+.pc:hover{background:rgba(13,20,40,0.98);}
+[data-theme="light"] .pc:hover{background:rgba(228,236,255,0.98);}
 .pc:hover::after{transform:scaleX(1);}
 .pc.hidden{display:none;}
 .pt{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:.9rem;}
@@ -140,13 +137,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .pr::before{content:'→';}
 .stk{display:flex;flex-wrap:wrap;gap:.26rem;margin-bottom:.85rem;}
 .stag{font-size:.56rem;padding:.12rem .38rem;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.14);color:var(--accent3);border-radius:1px;font-family:'DM Mono',monospace;}
-.pl{display:flex;gap:.85rem;padding-top:.75rem;border-top:1px solid var(--border);}
+.pl{display:flex;gap:.85rem;padding-top:.75rem;border-top:1px solid var(--border);flex-wrap:wrap;}
 .plk{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--muted2);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .18s;}
 .plk:hover{color:var(--accent);}
 .plk::after{content:' ↗';}
 
 /* EXP */
-.exp-s{background:var(--bg2);border-top:1px solid var(--border);transition:background .35s;}
+.exp-s{background:rgba(13,20,40,0.85);border-top:1px solid var(--border);}
+[data-theme="light"] .exp-s{background:rgba(228,236,255,0.88);}
 .tl{display:flex;flex-direction:column;}
 .tli{display:grid;grid-template-columns:200px 1fr;gap:3rem;padding:2.2rem 0;border-bottom:1px solid var(--border);position:relative;}
 .tli:last-child{border-bottom:none;}
@@ -156,9 +154,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .tc{font-size:.73rem;color:var(--muted);font-weight:500;}
 .tr h3{font-size:.98rem;font-weight:700;margin-bottom:.55rem;}
 .tr p{font-size:.77rem;color:var(--muted);line-height:1.8;}
-
 .cg{display:grid;grid-template-columns:repeat(4,1fr);gap:.7rem;margin-top:3rem;}
-.cert{border:1px solid var(--border);padding:1.3rem;transition:border-color .2s,background .2s;cursor:none;background:var(--card-bg);}
+.cert{border:1px solid var(--border);padding:1.3rem;transition:border-color .2s,background .2s;cursor:none;background:rgba(9,14,31,0.6);}
+[data-theme="light"] .cert{background:rgba(232,239,255,0.6);}
 .cert:hover{border-color:var(--accent2);background:var(--accent2-dim);}
 .ci2{font-size:1.3rem;margin-bottom:.55rem;}
 .cn{font-size:.8rem;font-weight:700;margin-bottom:.28rem;}
@@ -171,7 +169,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .ch .vl{color:var(--accent);}
 .csub{font-size:.86rem;color:var(--muted);line-height:1.8;max-width:420px;}
 .clinks{display:flex;flex-direction:column;gap:.72rem;}
-.clink{display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--text);padding:.95rem 1.3rem;border:1px solid var(--border);transition:all .22s;cursor:none;position:relative;overflow:hidden;}
+.clink{display:flex;align-items:center;gap:1rem;text-decoration:none;color:var(--text);padding:.95rem 1.3rem;border:1px solid var(--border);transition:all .22s;cursor:none;position:relative;overflow:hidden;background:rgba(9,14,31,0.5);}
+[data-theme="light"] .clink{background:rgba(232,239,255,0.5);}
 .clink::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--accent);transform:scaleY(0);transform-origin:bottom;transition:transform .25s;}
 .clink:hover{border-color:rgba(167,139,250,.25);background:var(--accent-dim);transform:translateX(4px);}
 .clink:hover::before{transform:scaleY(1);}
@@ -205,12 +204,9 @@ footer{border-top:1px solid var(--border);padding:1.3rem 3rem;display:flex;justi
 </style>
 </head>
 <body>
+<canvas id="bgcanvas"></canvas>
 <div id="cd"></div>
 <div id="cr"></div>
-<div class="grid-bg"></div>
-<div class="blob b1"></div>
-<div class="blob b2"></div>
-<div class="blob b3"></div>
 
 <nav>
   <div class="nav-logo">JF</div>
@@ -226,7 +222,6 @@ footer{border-top:1px solid var(--border);padding:1.3rem 3rem;display:flex;justi
   </div>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-left">
     <div class="hero-eyebrow">ML Engineer · Data Scientist · Riverside, CA</div>
@@ -244,11 +239,10 @@ footer{border-top:1px solid var(--border);padding:1.3rem 3rem;display:flex;justi
     </div>
   </div>
   <div class="hero-right">
-    <canvas id="biocanvas"></canvas>
+    <canvas id="herocanvas"></canvas>
   </div>
 </section>
 
-<!-- STATS -->
 <div class="stats-strip" id="strip">
   <div class="si"><span class="snum" id="s1">25+</span><span class="slbl">End-to-End Projects</span></div>
   <div class="si"><span class="snum" id="s2">8/12</span><span class="slbl">Code Jam Wins</span></div>
@@ -256,7 +250,6 @@ footer{border-top:1px solid var(--border);padding:1.3rem 3rem;display:flex;justi
   <div class="si"><span class="snum" id="s4">3×</span><span class="slbl">Audience Awards</span></div>
 </div>
 
-<!-- ABOUT -->
 <section id="about" class="section about-s">
   <div class="inner">
     <div class="sh rv">
@@ -283,8 +276,7 @@ footer{border-top:1px solid var(--border);padding:1.3rem 3rem;display:flex;justi
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="section">
+<section id="projects" class="section projects-s">
   <div class="inner">
     <div class="sh rv">
       <div class="sec-label">02 — Projects</div>
@@ -301,34 +293,166 @@ footer{border-top:1px solid var(--border);padding:1.3rem 3rem;display:flex;justi
       <button class="fbtn" data-f="jam">Code Jams</button>
     </div>
     <div class="pg" id="pgrid">
-      <div class="pc" data-c="nlp dl jam"><div class="pt"><span class="pn">001</span><div class="br"><span class="bx bv">🏆 Capstone</span></div></div><h3>Biotech Trend Intelligence Platform</h3><div class="pm">Dec 2025 · Google AI Agents Intensive</div><p class="pd">AI-powered NLP pipeline automating trend extraction across 200+ unstructured biotech articles. KMeans clustering + cosine similarity. Streamlit dashboard for strategic stakeholder analysis.</p><div class="pr">↑ 30% data reliability · ↓ 50% preprocessing time</div><div class="stk"><span class="stag">Python</span><span class="stag">HuggingFace</span><span class="stag">KMeans</span><span class="stag">Streamlit</span><span class="stag">Google Gemini</span></div><div class="pl"><a href="#" class="plk">GitHub</a><a href="#" class="plk">Dashboard</a></div></div>
 
-      <div class="pc" data-c="ts eda jam"><div class="pt"><span class="pn">002</span><div class="br"><span class="bx bv">🥇 Jam Winner</span></div></div><h3>U.S. Consumer Behavior Under Inflation</h3><div class="pm">Feb 2026 · February Data Jam</div><p class="pd">Statistically proved post-COVID consumer behavior is a permanent structural shift using FRED macroeconomic data. OLS regression revealed a 6x spike in prediction error confirming irreversible change.</p><div class="pr">6x prediction error spike · 2 structural breaks</div><div class="stk"><span class="stag">Prophet</span><span class="stag">Ruptures</span><span class="stag">OLS</span><span class="stag">FRED API</span><span class="stag">Statsmodels</span></div><div class="pl"><a href="#" class="plk">GitHub</a><a href="#" class="plk">Slides</a></div></div>
+      <div class="pc" data-c="nlp dl jam">
+        <div class="pt"><span class="pn">001</span><div class="br"><span class="bx bv">🏆 Capstone</span></div></div>
+        <h3>Biotech Trend Intelligence Platform</h3>
+        <div class="pm">Dec 2025 · Google AI Agents Intensive</div>
+        <p class="pd">AI-powered NLP pipeline automating trend extraction across 200+ unstructured biotech articles. KMeans clustering + cosine similarity. Streamlit dashboard for strategic stakeholder analysis.</p>
+        <div class="pr">↑ 30% data reliability · ↓ 50% preprocessing time</div>
+        <div class="stk"><span class="stag">Python</span><span class="stag">HuggingFace</span><span class="stag">KMeans</span><span class="stag">Streamlit</span><span class="stag">Google Gemini</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/bio_project" target="_blank" class="plk">GitHub</a>
+          <a href="https://biotechtrendintelligence.streamlit.app/" target="_blank" class="plk">Live App</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="nlp dl jam"><div class="pt"><span class="pn">003</span><div class="br"><span class="bx ba">🥇 Highest Score</span></div></div><h3>Transformer Sentiment Analysis</h3><div class="pm">Oct 2025 · October Code Pudding</div><p class="pd">Fine-tuned DistilBERT and RoBERTa for 5-class emotion classification in tweets and lyrics. GPU training, single vs. multi-label pipelines, emotion distribution visualizations.</p><div class="pr">↑ 35% nuanced emotion detection</div><div class="stk"><span class="stag">HuggingFace</span><span class="stag">DistilBERT</span><span class="stag">RoBERTa</span><span class="stag">PyTorch</span><span class="stag">GPU</span></div><div class="pl"><a href="#" class="plk">GitHub</a><a href="#" class="plk">Slides</a></div></div>
+      <div class="pc" data-c="ts eda jam">
+        <div class="pt"><span class="pn">002</span><div class="br"><span class="bx bv">🥇 Jam Winner</span></div></div>
+        <h3>U.S. Consumer Behavior Under Inflation</h3>
+        <div class="pm">Feb 2026 · February Data Jam</div>
+        <p class="pd">Statistically proved post-COVID consumer behavior is a permanent structural shift using FRED macroeconomic data. OLS regression revealed a 6x spike in prediction error confirming irreversible change.</p>
+        <div class="pr">6x prediction error spike · 2 structural breaks</div>
+        <div class="stk"><span class="stag">Prophet</span><span class="stag">Ruptures</span><span class="stag">OLS</span><span class="stag">FRED API</span><span class="stag">Statsmodels</span></div>
+        <div class="pl">
+          <a href="https://github.com/hamedtaeb/US-Consumer-Behaviour" target="_blank" class="plk">GitHub</a>
+          <a href=https://docs.google.com/presentation/d/1qrmIKCsQfTuoeI4t9AtLnDgNgG4mPP1b/edit?usp=sharing&ouid=101778065129246333092&rtpof=true&sd=true" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="nlp jam"><div class="pt"><span class="pn">004</span><div class="br"><span class="bx ba">🥇 Highest Score</span></div></div><h3>YouTube Sentiment Analysis</h3><div class="pm">Apr 2025 · April Code Pudding</div><p class="pd">MiniLM embeddings + logistic regression to predict YouTube comment sentiment at scale. Uncovered weak correlation between sentiment and like/dislike ratios revealing richer audience insights.</p><div class="pr">Sentiment vs. engagement mismatch discovered</div><div class="stk"><span class="stag">MiniLM</span><span class="stag">Logistic Regression</span><span class="stag">TextBlob</span><span class="stag">NLTK</span></div><div class="pl"><a href="#" class="plk">GitHub</a><a href="#" class="plk">Slides</a></div></div>
+      <div class="pc" data-c="nlp dl jam">
+        <div class="pt"><span class="pn">003</span><div class="br"><span class="bx ba">🥇 Highest Score</span></div></div>
+        <h3>Transformer Sentiment Analysis</h3>
+        <div class="pm">Oct 2025 · October Code Pudding</div>
+        <p class="pd">Fine-tuned DistilBERT and RoBERTa for 5-class emotion classification in tweets and lyrics. GPU training, single vs. multi-label pipelines, emotion distribution visualizations.</p>
+        <div class="pr">↑ 35% nuanced emotion detection</div>
+        <div class="stk"><span class="stag">HuggingFace</span><span class="stag">DistilBERT</span><span class="stag">RoBERTa</span><span class="stag">PyTorch</span><span class="stag">GPU</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/transformer_sentiment_analysis" target="_blank" class="plk">GitHub</a>
+          <a href="https://docs.google.com/presentation/d/1Sncda6MnRxUlRdWBD-d6uk8F4sKItJY1kQqporFW19o/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="ml"><div class="pt"><span class="pn">005</span><div class="br"></div></div><h3>Customer Churn Prediction</h3><div class="pm">May 2025 · TripleTen</div><p class="pd">End-to-end ML pipeline for telecom churn. 5 models tested with SMOTE class imbalance handling. LightGBM won. Key drivers: tenure, contract type, service usage. SHAP for explainability.</p><div class="pr">AUC-ROC 0.915 · Accuracy 89% · +15% vs baseline</div><div class="stk"><span class="stag">LightGBM</span><span class="stag">XGBoost</span><span class="stag">CatBoost</span><span class="stag">SMOTE</span><span class="stag">SHAP</span></div><div class="pl"><a href="#" class="plk">GitHub</a></div></div>
+      <div class="pc" data-c="nlp jam">
+        <div class="pt"><span class="pn">004</span><div class="br"><span class="bx ba">🥇 Highest Score</span></div></div>
+        <h3>YouTube Sentiment Analysis</h3>
+        <div class="pm">Apr 2025 · April Code Pudding</div>
+        <p class="pd">MiniLM embeddings + logistic regression to predict YouTube comment sentiment at scale. Uncovered weak correlation between sentiment and like/dislike ratios revealing richer audience insights.</p>
+        <div class="pr">Sentiment vs. engagement mismatch discovered</div>
+        <div class="stk"><span class="stag">MiniLM</span><span class="stag">Logistic Regression</span><span class="stag">TextBlob</span><span class="stag">NLTK</span></div>
+        <div class="pl">
+          <a href="https://github.com/betanight/youtube_sentiment_analysis" target="_blank" class="plk">GitHub</a>
+          <a href="https://docs.google.com/presentation/d/1iBAszTxmqfLIeaWwF3vqKxZdiX_8bmHXQ77mmS_cUSU/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="dash jam"><div class="pt"><span class="pn">006</span><div class="br"><span class="bx ba">🎖 Audience Award</span></div></div><h3>Spotify Interactive Dashboard</h3><div class="pm">Jun 2025 · June Code Pudding</div><p class="pd">Deployed Plotly Dash app exploring Spotify trends across genres and time. KMeans clustering, audio similarity search, interactive genre filters for technical and non-technical users.</p><div class="pr">Audience Award · Live on Render</div><div class="stk"><span class="stag">Plotly Dash</span><span class="stag">KMeans</span><span class="stag">PCA</span><span class="stag">Spotipy</span><span class="stag">Render</span></div><div class="pl"><a href="#" class="plk">GitHub</a><a href="#" class="plk">Live App</a></div></div>
+      <div class="pc" data-c="ml">
+        <div class="pt"><span class="pn">005</span><div class="br"></div></div>
+        <h3>Customer Churn Prediction</h3>
+        <div class="pm">May 2025 · TripleTen</div>
+        <p class="pd">End-to-end ML pipeline for telecom churn. 5 models tested with SMOTE class imbalance handling. LightGBM won. Key drivers: tenure, contract type, service usage. SHAP for explainability.</p>
+        <div class="pr">AUC-ROC 0.915 · Accuracy 89% · +15% vs baseline</div>
+        <div class="stk"><span class="stag">LightGBM</span><span class="stag">XGBoost</span><span class="stag">CatBoost</span><span class="stag">SMOTE</span><span class="stag">SHAP</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/customer_churn_forecasting_for_interconnect" target="_blank" class="plk">GitHub</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="nlp jam"><div class="pt"><span class="pn">007</span><div class="br"><span class="bx ba">🎖 Audience Award</span></div></div><h3>Wikipedia Bias Detection</h3><div class="pm">May 2025 · May Code Pudding</div><p class="pd">ML pipeline detecting linguistic bias in Wikipedia articles. Sentence-level classifiers with a neutrality scoring function using spaCy, NLTK, MiniLM embeddings, and ensemble models.</p><div class="pr">Captured subtle bias beyond sentiment rules</div><div class="stk"><span class="stag">spaCy</span><span class="stag">NLTK</span><span class="stag">MiniLM</span><span class="stag">XGBoost</span><span class="stag">SVM</span></div><div class="pl"><a href="#" class="plk">GitHub</a><a href="#" class="plk">Slides</a></div></div>
+      <div class="pc" data-c="dash jam">
+        <div class="pt"><span class="pn">006</span><div class="br"><span class="bx ba">🎖 Audience Award</span></div></div>
+        <h3>Spotify Interactive Dashboard</h3>
+        <div class="pm">Jun 2025 · June Code Pudding</div>
+        <p class="pd">Deployed Plotly Dash app exploring Spotify trends across genres and time. KMeans clustering, audio similarity search, interactive genre filters for technical and non-technical users.</p>
+        <div class="pr">Audience Award · Live on Render</div>
+        <div class="stk"><span class="stag">Plotly Dash</span><span class="stag">KMeans</span><span class="stag">PCA</span><span class="stag">Spotipy</span><span class="stag">Render</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/june_code_jam" target="_blank" class="plk">GitHub</a>
+          <a href="https://june-code-jam.onrender.com/" target="_blank" class="plk">Live App</a>
+          <a href="https://docs.google.com/presentation/d/1i8ULFEhCbkcBysYaiiFAJunYZrbJozOYPduaQDFUfug/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="eda jam"><div class="pt"><span class="pn">008</span><div class="br"><span class="bx ba">🎖 Audience Award</span></div></div><h3>IMDB Web Scraping & Genre Analysis</h3><div class="pm">Feb 2025 · February Code Pudding</div><p class="pd">Scraped and analyzed 100 movies and 100 actors for genre profitability and award predictors. Comedy highest-ROI genre. Nominations beat actor experience as award predictor.</p><div class="pr">Comedy = highest ROI · Nominations key to wins</div><div class="stk"><span class="stag">BeautifulSoup</span><span class="stag">Requests</span><span class="stag">Pandas</span><span class="stag">Seaborn</span></div><div class="pl"><a href="#" class="plk">GitHub</a><a href="#" class="plk">Slides</a></div></div>
+      <div class="pc" data-c="nlp jam">
+        <div class="pt"><span class="pn">007</span><div class="br"><span class="bx ba">🎖 Audience Award</span></div></div>
+        <h3>Wikipedia Bias Detection</h3>
+        <div class="pm">May 2025 · May Code Pudding</div>
+        <p class="pd">ML pipeline detecting linguistic bias in Wikipedia articles. Sentence-level classifiers with a neutrality scoring function using spaCy, NLTK, MiniLM embeddings, and ensemble models.</p>
+        <div class="pr">Captured subtle bias beyond sentiment rules</div>
+        <div class="stk"><span class="stag">spaCy</span><span class="stag">NLTK</span><span class="stag">MiniLM</span><span class="stag">XGBoost</span><span class="stag">SVM</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/may_code_jam_pudding" target="_blank" class="plk">GitHub</a>
+          <a href="https://docs.google.com/presentation/d/1j6oYqd61E-VpjNKUmPFLZMcWpQeTWEzpy2WYOOyHp2g/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="ml eda jam"><div class="pt"><span class="pn">009</span><div class="br"><span class="bx ba">🥇 Highest Score</span></div></div><h3>Global Happiness Score Prediction</h3><div class="pm">Sep 2025 · September Code Pudding</div><p class="pd">Predicted happiness scores (2015-2023) across 150+ countries using GDP, social support, life expectancy. Ridge Regression selected after model comparison. SHAP for interpretability.</p><div class="pr">R² 0.7713 · MAE 0.3838 · RMSE 0.5445</div><div class="stk"><span class="stag">Ridge Regression</span><span class="stag">SHAP</span><span class="stag">Scikit-learn</span><span class="stag">Plotly</span></div><div class="pl"><a href="#" class="plk">GitHub</a><a href="#" class="plk">Slides</a></div></div>
+      <div class="pc" data-c="eda jam">
+        <div class="pt"><span class="pn">008</span><div class="br"><span class="bx ba">🎖 Audience Award</span></div></div>
+        <h3>IMDB Web Scraping & Genre Analysis</h3>
+        <div class="pm">Feb 2025 · February Code Pudding</div>
+        <p class="pd">Scraped and analyzed 100 movies and 100 actors for genre profitability and award predictors. Comedy highest-ROI genre. Nominations beat actor experience as award predictor.</p>
+        <div class="pr">Comedy = highest ROI · Nominations key to wins</div>
+        <div class="stk"><span class="stag">BeautifulSoup</span><span class="stag">Requests</span><span class="stag">Pandas</span><span class="stag">Seaborn</span></div>
+        <div class="pl">
+          <a href="https://github.com/JohnFDwy/imdb_web_scraping" target="_blank" class="plk">GitHub</a>
+          <a href="https://docs.google.com/presentation/d/1jd70Kh01M4SDTLywlpXwu0wXWQdawaXA/edit?usp=sharing&ouid=101778065129246333092&rtpof=true&sd=true" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="nlp ml"><div class="pt"><span class="pn">010</span><div class="br"></div></div><h3>Film Junky — Movie Review Classifier</h3><div class="pm">Apr 2025 · TripleTen</div><p class="pd">Sentiment classifier for IMDB reviews. Tested LogReg, LightGBM, and BERT with TF-IDF and spaCy preprocessing. Logistic Regression + spaCy achieved best F1 for automated moderation.</p><div class="pr">F1 Score = 0.88</div><div class="stk"><span class="stag">spaCy</span><span class="stag">TF-IDF</span><span class="stag">BERT</span><span class="stag">LightGBM</span></div><div class="pl"><a href="#" class="plk">GitHub</a></div></div>
+      <div class="pc" data-c="ml eda jam">
+        <div class="pt"><span class="pn">009</span><div class="br"><span class="bx ba">🥇 Highest Score</span></div></div>
+        <h3>Global Happiness Score Prediction</h3>
+        <div class="pm">Sep 2025 · September Code Pudding</div>
+        <p class="pd">Predicted happiness scores (2015-2023) across 150+ countries using GDP, social support, life expectancy. Ridge Regression selected after model comparison. SHAP for interpretability.</p>
+        <div class="pr">R² 0.7713 · MAE 0.3838 · RMSE 0.5445</div>
+        <div class="stk"><span class="stag">Ridge Regression</span><span class="stag">SHAP</span><span class="stag">Scikit-learn</span><span class="stag">Plotly</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/predicting_spotify_song_popularity" target="_blank" class="plk">GitHub</a>
+          <a href="https://docs.google.com/presentation/d/132MvMV7AWqE_Zn1UraeJrhbsQW_OLtHh/edit?slide=id.p1#slide=id.p1" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="ts ml"><div class="pt"><span class="pn">011</span><div class="br"></div></div><h3>Sweet Lift Taxi Demand Forecasting</h3><div class="pm">Mar 2025 · TripleTen</div><p class="pd">Hourly taxi demand forecasting for driver allocation. Compared 7 models including ARMA, CatBoost, LightGBM, Random Forest. Random Forest exceeded the 48 RMSE target.</p><div class="pr">RMSE = 43.87 · ↑ 15-20% over traditional TS</div><div class="stk"><span class="stag">Random Forest</span><span class="stag">CatBoost</span><span class="stag">ARMA</span><span class="stag">Statsmodels</span></div><div class="pl"><a href="#" class="plk">GitHub</a></div></div>
+      <div class="pc" data-c="nlp ml">
+        <div class="pt"><span class="pn">010</span><div class="br"></div></div>
+        <h3>Film Junky — Movie Review Classifier</h3>
+        <div class="pm">Apr 2025 · TripleTen</div>
+        <p class="pd">Sentiment classifier for IMDB reviews. Tested LogReg, LightGBM, and BERT with TF-IDF and spaCy preprocessing. Logistic Regression + spaCy achieved best F1 for automated moderation.</p>
+        <div class="pr">F1 Score = 0.88</div>
+        <div class="stk"><span class="stag">spaCy</span><span class="stag">TF-IDF</span><span class="stag">BERT</span><span class="stag">LightGBM</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/model_classify_imdb_reviews" target="_blank" class="plk">GitHub</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="ml"><div class="pt"><span class="pn">012</span><div class="br"></div></div><h3>Sure Tomorrow Insurance ML</h3><div class="pm">Feb 2025 · TripleTen</div><p class="pd">ML pipeline for customer segmentation, benefit prediction, and data privacy. KNN similarity, classification, benefit estimation, and data masking via random matrix transformation without performance loss.</p><div class="pr">F1 +30% over baseline · Stable post-obfuscation RMSE</div><div class="stk"><span class="stag">KNN</span><span class="stag">Random Forest</span><span class="stag">Data Masking</span><span class="stag">Scikit-learn</span></div><div class="pl"><a href="#" class="plk">GitHub</a></div></div>
+      <div class="pc" data-c="ts ml">
+        <div class="pt"><span class="pn">011</span><div class="br"></div></div>
+        <h3>Sweet Lift Taxi Demand Forecasting</h3>
+        <div class="pm">Mar 2025 · TripleTen</div>
+        <p class="pd">Hourly taxi demand forecasting for driver allocation. Compared 7 models including ARMA, CatBoost, LightGBM, Random Forest. Random Forest exceeded the 48 RMSE target.</p>
+        <div class="pr">RMSE = 43.87 · ↑ 15-20% over traditional TS</div>
+        <div class="stk"><span class="stag">Random Forest</span><span class="stag">CatBoost</span><span class="stag">ARMA</span><span class="stag">Statsmodels</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/model_predict_taxi_drivers" target="_blank" class="plk">GitHub</a>
+        </div>
+      </div>
+
+      <div class="pc" data-c="eda dash jam">
+        <div class="pt"><span class="pn">012</span><div class="br"><span class="bx bv">🥇 Code Jam Win</span></div></div>
+        <h3>DayTrippr — U.S. Road Trip Optimizer</h3>
+        <div class="pm">Jul 2025 · July Code Pudding</div>
+        <p class="pd">MVP app recommending optimized sightseeing routes across 10 U.S. landmarks using geospatial analysis. Reduced total driving distance significantly with interactive Mapbox visualization.</p>
+        <div class="pr">↓ 4,600 km · ↓ 78 driving hours (~35%)</div>
+        <div class="stk"><span class="stag">Python</span><span class="stag">Geopy</span><span class="stag">Plotly</span><span class="stag">Dash</span><span class="stag">Mapbox</span></div>
+        <div class="pl">
+          <a href="https://github.com/ValTsan/dcm-july-codejam" target="_blank" class="plk">GitHub</a>
+          <a href="https://daytrippr.netlify.app/" target="_blank" class="plk">Live App</a>
+          <a href="https://docs.google.com/presentation/d/1jC3B7cGLTfIN399vAbXA0I0UyhAYMGNB/edit?usp=sharing&ouid=101778065129246333092&rtpof=true&sd=true" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- EXPERIENCE -->
 <section id="experience" class="section exp-s">
   <div class="inner">
     <div class="sh rv">
@@ -351,7 +475,6 @@ footer{border-top:1px solid var(--border);padding:1.3rem 3rem;display:flex;justi
   </div>
 </section>
 
-<!-- CONTACT -->
 <section id="contact" class="section cs">
   <div class="cinner">
     <div class="rv">
@@ -360,17 +483,17 @@ footer{border-top:1px solid var(--border);padding:1.3rem 3rem;display:flex;justi
       <p class="csub">Open to Data Scientist, ML Engineer, and Data Analyst roles — especially in healthcare, biotech, and applied analytics. Production-ready depth, science background, measurable results.</p>
     </div>
     <div class="clinks rv">
-      <a href="mailto:your@email.com" class="clink"><span style="font-size:16px;opacity:.6;">✉</span><span style="font-size:.8rem;font-weight:500;">your@email.com</span><span class="clia">→</span></a>
-      <a href="https://www.linkedin.com/in/jeelfaldu7/" target="_blank" class="clink"><span style="font-size:16px;opacity:.6;">💼</span><span style="font-size:.8rem;font-weight:500;">linkedin.com/in/jeelfaldu7</span><span class="clia">→</span></a>
-      <a href="https://github.com/jeelfaldu7" target="_blank" class="clink"><span style="font-size:16px;opacity:.6;">⌥</span><span style="font-size:.8rem;font-weight:500;">github.com/jeelfaldu7</span><span class="clia">→</span></a>
-      <a href="https://jeelfaldu7.github.io" target="_blank" class="clink"><span style="font-size:16px;opacity:.6;">🌐</span><span style="font-size:.8rem;font-weight:500;">jeelfaldu7.github.io</span><span class="clia">→</span></a>
+      <a href="mailto:jeel.faldu7@gmail.com" class="clink"><span style="font-size:16px;opacity:.6">✉</span><span style="font-size:.8rem;font-weight:500">jeel.faldu7@gmail.com</span><span class="clia">→</span></a>
+      <a href="https://www.linkedin.com/in/jeelfaldu7/" target="_blank" class="clink"><span style="font-size:16px;opacity:.6">💼</span><span style="font-size:.8rem;font-weight:500">linkedin.com/in/jeelfaldu7</span><span class="clia">→</span></a>
+      <a href="https://github.com/jeelfaldu7" target="_blank" class="clink"><span style="font-size:16px;opacity:.6">⌥</span><span style="font-size:.8rem;font-weight:500">github.com/jeelfaldu7</span><span class="clia">→</span></a>
+      <a href="https://jeelfaldu7.github.io" target="_blank" class="clink"><span style="font-size:16px;opacity:.6">🌐</span><span style="font-size:.8rem;font-weight:500">jeelfaldu7.github.io</span><span class="clia">→</span></a>
     </div>
   </div>
 </section>
 
 <footer>
   <span>© 2026 Jeel Faldu</span>
-  <span style="color:var(--accent);">Open to hire · Riverside, CA</span>
+  <span style="color:var(--accent)">Open to hire · Riverside, CA</span>
 </footer>
 
 <script>
@@ -381,10 +504,10 @@ document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cd.style.lef
 (function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;cr.style.left=rx+'px';cr.style.top=ry+'px';requestAnimationFrame(loop);})();
 document.querySelectorAll('a,button').forEach(el=>{
   el.addEventListener('mouseenter',()=>{cd.style.width='14px';cd.style.height='14px';cd.style.background='#fbbf24';cr.style.width='50px';cr.style.height='50px';cr.style.borderColor='rgba(251,191,36,.4)';});
-  el.addEventListener('mouseleave',()=>{cd.style.width='8px';cd.style.height='8px';cd.style.background='var(--accent)';cr.style.width='34px';cr.style.height='34px';cr.style.borderColor='rgba(167,139,250,.4)';});
+  el.addEventListener('mouseleave',()=>{cd.style.width='8px';cd.style.height='8px';cd.style.background='var(--accent)';cr.style.width='34px';cr.style.height='34px';cr.style.borderColor='rgba(167,139,250,.38)';});
 });
 
-/* THEME TOGGLE */
+/* THEME */
 function toggleTheme(){
   const html=document.documentElement;
   const isDark=html.getAttribute('data-theme')==='dark';
@@ -392,163 +515,133 @@ function toggleTheme(){
   document.getElementById('themeBtn').textContent=isDark?'🌙 Dark':'☀ Light';
 }
 
-/* BIO-TECH CANVAS */
-const canvas=document.getElementById('biocanvas');
-const ctx=canvas.getContext('2d');
-let W,H,nodes=[],phase=0,morphT=0,morphDir=1;
+/* COLOR HELPERS */
+function getAc(){const d=document.documentElement.getAttribute('data-theme')==='dark';return d?{r:167,g:139,b:250}:{r:109,g:40,b:217};}
+function getAm(){const d=document.documentElement.getAttribute('data-theme')==='dark';return d?{r:251,g:191,b:36}:{r:180,g:83,b:9};}
 
-const BIOTECH_SYMBOLS=['⬡','○','◇','△','✦'];
+/* ===== FULL PAGE BG CANVAS ===== */
+const bgc=document.getElementById('bgcanvas');
+const bgx=bgc.getContext('2d');
+let bgW,bgH,bgNodes=[],bgPhase=0;
 
-function resize(){
-  const rect=canvas.parentElement.getBoundingClientRect();
-  W=canvas.width=rect.width||500;
-  H=canvas.height=canvas.parentElement.offsetHeight||520;
-  initNodes();
-}
-
-function initNodes(){
-  nodes=[];
-  const count=Math.floor(W*H/8000)+22;
-  for(let i=0;i<count;i++){
-    const isBio=Math.random()<0.45;
-    nodes.push({
-      x:Math.random()*W,y:Math.random()*H,
-      vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,
-      r:isBio?Math.random()*3+2:Math.random()*2+1.5,
-      isBio,
-      symbol:isBio?BIOTECH_SYMBOLS[Math.floor(Math.random()*BIOTECH_SYMBOLS.length)]:'',
-      pulse:Math.random()*Math.PI*2,
-      pulseSpeed:Math.random()*.02+.01,
-      opacity:Math.random()*.5+.4,
-      type:isBio?'bio':'data',
-      orbitRadius:isBio?Math.random()*30+15:0,
-      orbitAngle:Math.random()*Math.PI*2,
-      orbitSpeed:(Math.random()-.5)*.008,
-      baseX:0,baseY:0
+function bgResize(){bgW=bgc.width=window.innerWidth;bgH=bgc.height=window.innerHeight;bgInit();}
+function bgInit(){
+  bgNodes=[];
+  const n=Math.floor(bgW*bgH/18000)+18;
+  for(let i=0;i<n;i++){
+    const bio=Math.random()<.4;
+    bgNodes.push({
+      x:Math.random()*bgW,y:Math.random()*bgH,
+      vx:(Math.random()-.5)*.18,vy:(Math.random()-.5)*.18,
+      r:bio?Math.random()*2+1.2:Math.random()*1.5+0.8,
+      bio,pulse:Math.random()*Math.PI*2,
+      ps:Math.random()*.015+.006,op:Math.random()*.22+.1
     });
-    nodes[i].baseX=nodes[i].x;
-    nodes[i].baseY=nodes[i].y;
   }
 }
-
-function getAccent(){
-  const dark=document.documentElement.getAttribute('data-theme')==='dark';
-  return dark?{r:167,g:139,b:250}:{r:109,g:40,b:217};
-}
-function getAmber(){
-  const dark=document.documentElement.getAttribute('data-theme')==='dark';
-  return dark?{r:251,g:191,b:36}:{r:180,g:83,b:9};
-}
-function getBlue(){
-  const dark=document.documentElement.getAttribute('data-theme')==='dark';
-  return dark?{r:96,g:165,b:250}:{r:29,g:78,b,b:216};
-}
-
-function draw(){
-  ctx.clearRect(0,0,W,H);
-  phase+=.008;
-  morphT+=.003*morphDir;
-  if(morphT>1){morphT=1;morphDir=-1;}
-  if(morphT<0){morphT=0;morphDir=1;}
-
-  const ac=getAccent(),am=getAmber();
-  const dark=document.documentElement.getAttribute('data-theme')==='dark';
-  const bgAlpha=dark?0:0.04;
-
-  nodes.forEach((n,i)=>{
-    n.pulse+=n.pulseSpeed;
-    if(n.isBio){
-      n.orbitAngle+=n.orbitSpeed;
-      n.x=n.baseX+Math.cos(n.orbitAngle)*n.orbitRadius*.3;
-      n.y=n.baseY+Math.sin(n.orbitAngle)*n.orbitRadius*.3;
-    } else {
-      n.x+=n.vx;n.y+=n.vy;
-      if(n.x<0||n.x>W)n.vx*=-1;
-      if(n.y<0||n.y>H)n.vy*=-1;
-    }
-    n.baseX+=n.vx*.5;n.baseY+=n.vy*.5;
-    if(n.baseX<0||n.baseX>W)n.vx*=-1;
-    if(n.baseY<0||n.baseY>H)n.vy*=-1;
-
-    for(let j=i+1;j<nodes.length;j++){
-      const m=nodes[j];
-      const dx=n.x-m.x,dy=n.y-m.y;
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      const maxDist=n.isBio&&m.isBio?130:n.isBio||m.isBio?100:80;
-      if(dist<maxDist){
-        const t=1-dist/maxDist;
-        const isBioConn=n.isBio&&m.isBio;
-        const c=isBioConn?am:ac;
-        ctx.beginPath();
-        ctx.moveTo(n.x,n.y);
-        if(isBioConn){
-          const mx2=(n.x+m.x)/2+Math.sin(phase+i)*(dist*.15);
-          const my2=(n.y+m.y)/2+Math.cos(phase+j)*(dist*.15);
-          ctx.quadraticCurveTo(mx2,my2,m.x,m.y);
-        } else {
-          ctx.lineTo(m.x,m.y);
-        }
-        ctx.strokeStyle=`rgba(${c.r},${c.g},${c.b},${t*.35})`;
-        ctx.lineWidth=isBioConn?t*1.2:t*.7;
-        ctx.stroke();
+function bgDraw(){
+  bgx.clearRect(0,0,bgW,bgH);
+  bgPhase+=.005;
+  const ac=getAc(),am=getAm();
+  bgNodes.forEach((n,i)=>{
+    n.pulse+=n.ps;
+    n.x+=n.vx;n.y+=n.vy;
+    if(n.x<0||n.x>bgW)n.vx*=-1;
+    if(n.y<0||n.y>bgH)n.vy*=-1;
+    for(let j=i+1;j<bgNodes.length;j++){
+      const m=bgNodes[j];
+      const dx=n.x-m.x,dy=n.y-m.y,dist=Math.sqrt(dx*dx+dy*dy);
+      const maxD=n.bio&&m.bio?110:n.bio||m.bio?80:60;
+      if(dist<maxD){
+        const t=1-dist/maxD;
+        const c=n.bio&&m.bio?am:ac;
+        bgx.beginPath();bgx.moveTo(n.x,n.y);bgx.lineTo(m.x,m.y);
+        bgx.strokeStyle=`rgba(${c.r},${c.g},${c.b},${t*.1})`;
+        bgx.lineWidth=t*.5;bgx.stroke();
       }
     }
-
-    const pulse=Math.sin(n.pulse)*.3+.7;
-    const c=n.isBio?am:ac;
-    const r=n.r*pulse;
-    ctx.beginPath();
-    ctx.arc(n.x,n.y,r,0,Math.PI*2);
-    ctx.fillStyle=`rgba(${c.r},${c.g},${c.b},${n.opacity*pulse})`;
-    ctx.fill();
-
-    if(n.isBio&&n.r>3){
-      ctx.beginPath();
-      ctx.arc(n.x,n.y,r+3,0,Math.PI*2);
-      ctx.strokeStyle=`rgba(${c.r},${c.g},${c.b},${.15*pulse})`;
-      ctx.lineWidth=1;
-      ctx.stroke();
-    }
+    const p=Math.sin(n.pulse)*.2+.8;
+    const c=n.bio?am:ac;
+    bgx.beginPath();bgx.arc(n.x,n.y,n.r*p,0,Math.PI*2);
+    bgx.fillStyle=`rgba(${c.r},${c.g},${c.b},${n.op*p})`;
+    bgx.fill();
   });
+  requestAnimationFrame(bgDraw);
+}
+window.addEventListener('resize',bgResize);
+bgResize();bgDraw();
 
-  const hexNodes=nodes.filter(n=>n.isBio&&n.r>3.5);
-  if(hexNodes.length>2){
-    for(let i=0;i<Math.min(hexNodes.length-1,4);i++){
-      const a=hexNodes[i],b2=hexNodes[i+1];
-      const dx=b2.x-a.x,dy=b2.y-a.y;
-      const dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<180){
-        const pulse=Math.sin(phase*1.5+i)*.3+.7;
-        ctx.beginPath();
-        ctx.moveTo(a.x,a.y);
-        ctx.lineTo(b2.x,b2.y);
-        ctx.strokeStyle=`rgba(${am.r},${am.g},${am.b},${.25*pulse})`;
-        ctx.lineWidth=1.5;
-        ctx.setLineDash([4,6]);
-        ctx.stroke();
-        ctx.setLineDash([]);
+/* ===== HERO CANVAS (vivid) ===== */
+const hc=document.getElementById('herocanvas');
+const hx=hc.getContext('2d');
+let hW,hH,hNodes=[],hPhase=0;
+
+function hResize(){
+  const r=hc.parentElement.getBoundingClientRect();
+  hW=hc.width=r.width||500;hH=hc.height=hc.parentElement.offsetHeight||520;
+  hInit();
+}
+function hInit(){
+  hNodes=[];
+  const n=Math.floor(hW*hH/6500)+26;
+  for(let i=0;i<n;i++){
+    const bio=Math.random()<.45;
+    hNodes.push({
+      x:Math.random()*hW,y:Math.random()*hH,
+      vx:(Math.random()-.5)*.35,vy:(Math.random()-.5)*.35,
+      r:bio?Math.random()*3+2.5:Math.random()*2+1.5,
+      bio,pulse:Math.random()*Math.PI*2,
+      ps:Math.random()*.02+.01,op:Math.random()*.45+.4,
+      ox:0,oy:0,oa:Math.random()*Math.PI*2,
+      os:(Math.random()-.5)*.008,or:bio?Math.random()*25+12:0,
+      bx:0,by:0
+    });
+    hNodes[i].bx=hNodes[i].x;hNodes[i].by=hNodes[i].y;
+  }
+}
+function hDraw(){
+  hx.clearRect(0,0,hW,hH);hPhase+=.008;
+  const ac=getAc(),am=getAm();
+  hNodes.forEach((n,i)=>{
+    n.pulse+=n.ps;
+    if(n.bio){n.oa+=n.os;n.x=n.bx+Math.cos(n.oa)*n.or*.28;n.y=n.by+Math.sin(n.oa)*n.or*.28;}
+    n.bx+=n.vx*.5;n.by+=n.vy*.5;
+    if(n.bx<0||n.bx>hW)n.vx*=-1;
+    if(n.by<0||n.by>hH)n.vy*=-1;
+    for(let j=i+1;j<hNodes.length;j++){
+      const m=hNodes[j];
+      const dx=n.x-m.x,dy=n.y-m.y,dist=Math.sqrt(dx*dx+dy*dy);
+      const maxD=n.bio&&m.bio?130:n.bio||m.bio?95:75;
+      if(dist<maxD){
+        const t=1-dist/maxD,bio2=n.bio&&m.bio,c=bio2?am:ac;
+        hx.beginPath();hx.moveTo(n.x,n.y);
+        if(bio2){const cx=(n.x+m.x)/2+Math.sin(hPhase+i)*(dist*.14),cy=(n.y+m.y)/2+Math.cos(hPhase+j)*(dist*.14);hx.quadraticCurveTo(cx,cy,m.x,m.y);}
+        else hx.lineTo(m.x,m.y);
+        hx.strokeStyle=`rgba(${c.r},${c.g},${c.b},${t*.32})`;hx.lineWidth=bio2?t*1.2:t*.65;hx.stroke();
       }
     }
+    const p=Math.sin(n.pulse)*.28+.72,c=n.bio?am:ac;
+    hx.beginPath();hx.arc(n.x,n.y,n.r*p,0,Math.PI*2);
+    hx.fillStyle=`rgba(${c.r},${c.g},${c.b},${n.op*p})`;hx.fill();
+    if(n.bio&&n.r>3){hx.beginPath();hx.arc(n.x,n.y,n.r*p+3,0,Math.PI*2);hx.strokeStyle=`rgba(${c.r},${c.g},${c.b},${.13*p})`;hx.lineWidth=1;hx.stroke();}
+  });
+  const bios=hNodes.filter(n=>n.bio&&n.r>3.5);
+  for(let i=0;i<Math.min(bios.length-1,5);i++){
+    const a=bios[i],b=bios[i+1],dx=b.x-a.x,dy=b.y-a.y,dist=Math.sqrt(dx*dx+dy*dy);
+    if(dist<180){const p=Math.sin(hPhase*1.4+i)*.28+.72,am2=getAm();hx.beginPath();hx.moveTo(a.x,a.y);hx.lineTo(b.x,b.y);hx.strokeStyle=`rgba(${am2.r},${am2.g},${am2.b},${.18*p})`;hx.lineWidth=1.4;hx.setLineDash([4,7]);hx.stroke();hx.setLineDash([]);}
   }
-
-  requestAnimationFrame(draw);
+  requestAnimationFrame(hDraw);
 }
-
-window.addEventListener('resize',resize);
-resize();
-draw();
+window.addEventListener('resize',hResize);
+hResize();hDraw();
 
 /* FILTER */
 const fbtns=document.querySelectorAll('.fbtn'),cards=document.querySelectorAll('.pc');
 fbtns.forEach(b=>{
   b.addEventListener('click',()=>{
-    fbtns.forEach(x=>x.classList.remove('active'));
-    b.classList.add('active');
+    fbtns.forEach(x=>x.classList.remove('active'));b.classList.add('active');
     const f=b.dataset.f;
-    cards.forEach(c=>{
-      const cats=(c.dataset.c||'').split(' ');
-      c.classList.toggle('hidden',f!=='all'&&!cats.includes(f));
-    });
+    cards.forEach(c=>{const cats=(c.dataset.c||'').split(' ');c.classList.toggle('hidden',f!=='all'&&!cats.includes(f));});
   });
 });
 
@@ -565,12 +658,7 @@ const sobs=new IntersectionObserver(entries=>{
     animated=true;
     function cnt(el,end,suffix,dec=0){
       let dur=1600,t0=null;
-      function step(ts){
-        if(!t0)t0=ts;
-        const p=Math.min((ts-t0)/dur,1),e=1-Math.pow(1-p,3);
-        el.textContent=(dec?(e*end).toFixed(3):Math.floor(e*end))+suffix;
-        if(p<1)requestAnimationFrame(step);
-      }
+      function step(ts){if(!t0)t0=ts;const p=Math.min((ts-t0)/dur,1),e=1-Math.pow(1-p,3);el.textContent=(dec?(e*end).toFixed(3):Math.floor(e*end))+suffix;if(p<1)requestAnimationFrame(step);}
       requestAnimationFrame(step);
     }
     cnt(document.getElementById('s1'),25,'+');
