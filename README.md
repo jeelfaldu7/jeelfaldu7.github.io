@@ -10,7 +10,7 @@
 
 Live site: **[jeelfaldu7.github.io](https://jeelfaldu7.github.io)**
 
-A fully custom, hand-coded portfolio built with zero frameworks — just HTML, CSS, and vanilla JavaScript. Designed to stand out on LinkedIn and leave a lasting impression on recruiters and hiring managers.
+A fully custom, hand-coded portfolio built with zero frameworks - just HTML, CSS, and vanilla JavaScript. Designed to stand out on LinkedIn and leave a lasting impression on recruiters and hiring managers.
 
 ---
 
@@ -53,7 +53,7 @@ A fully custom, hand-coded portfolio built with zero frameworks — just HTML, C
 
 This repo deploys automatically via **GitHub Pages** from the `main` branch.
 
-To update the site, edit `index.html` and push to `main` — changes go live in under a minute.
+To update the site, edit `index.html` and push to `main` - changes go live in under a minute.
 
 ```bash
 git add index.html
@@ -67,7 +67,7 @@ git push origin main
 
 ```
 jeelfaldu7.github.io/
-└── index.html        # Entire site — single file, zero dependencies
+└── index.html        # Entire site - single file, zero dependencies
 └── README.md         # This file
 ```
 
