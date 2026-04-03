@@ -153,17 +153,31 @@ nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:ce
 .bx{font-size:.52rem;padding:.14rem .38rem;border-radius:1px;font-family:'DM Mono',monospace;white-space:nowrap;}
 .bv{background:var(--accent-dim);border:1px solid rgba(167,139,250,.2);color:var(--accent);}
 .ba{background:var(--accent2-dim);border:1px solid rgba(251,191,36,.22);color:var(--accent2);}
+.bg{background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);color:var(--accent3);}
 .pc h3{font-size:.9rem;font-weight:700;line-height:1.3;margin-bottom:.35rem;}
 .pm{font-family:'DM Mono',monospace;font-size:.55rem;color:var(--muted2);letter-spacing:.06em;margin-bottom:.6rem;}
 .pd{font-size:.72rem;color:var(--muted);line-height:1.75;margin-bottom:.75rem;flex:1;}
 .pr{display:inline-flex;align-items:center;gap:.35rem;font-family:'DM Mono',monospace;font-size:.58rem;color:var(--accent);background:var(--accent-dim);border:1px solid rgba(167,139,250,.15);padding:.16rem .48rem;border-radius:1px;margin-bottom:.75rem;}
 .pr::before{content:'→';}
+.pr2{display:inline-flex;align-items:center;gap:.35rem;font-family:'DM Mono',monospace;font-size:.58rem;color:var(--accent2);background:var(--accent2-dim);border:1px solid rgba(251,191,36,.15);padding:.16rem .48rem;border-radius:1px;margin-bottom:.75rem;margin-left:.3rem;}
+.pr2::before{content:'→';}
 .stk{display:flex;flex-wrap:wrap;gap:.24rem;margin-bottom:.8rem;}
 .stag{font-size:.54rem;padding:.1rem .36rem;background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.14);color:var(--accent3);border-radius:1px;font-family:'DM Mono',monospace;}
 .pl{display:flex;gap:.8rem;padding-top:.7rem;border-top:1px solid var(--border);flex-wrap:wrap;margin-top:auto;}
 .plk{font-family:'DM Mono',monospace;font-size:.56rem;color:var(--muted2);text-decoration:none;letter-spacing:.1em;text-transform:uppercase;transition:color .18s;}
 .plk:hover{color:var(--accent);}
+.plk.live{color:var(--accent2);}
+.plk.live:hover{color:var(--accent);}
 .plk::after{content:' ↗';}
+
+/* MORE PROJECTS STRIP */
+.more-strip{border:1px solid var(--border);border-top:none;background:rgba(9,14,31,0.6);padding:1.2rem 1.6rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.8rem;}
+[data-theme="light"] .more-strip{background:rgba(232,239,255,0.6);}
+.more-label{font-family:'DM Mono',monospace;font-size:.6rem;color:var(--muted);letter-spacing:.12em;}
+.more-label strong{color:var(--text);}
+.more-links{display:flex;gap:.5rem;flex-wrap:wrap;}
+.more-tag{font-family:'DM Mono',monospace;font-size:.54rem;padding:.2rem .55rem;border:1px solid var(--border2);color:var(--muted2);border-radius:1px;text-decoration:none;transition:all .18s;}
+.more-tag:hover{border-color:var(--accent);color:var(--accent);}
 
 /* HOW I THINK */
 .think-s{background:rgba(13,20,40,0.85);border-top:1px solid var(--border);}
@@ -239,6 +253,7 @@ footer{border-top:1px solid var(--border);padding:1.2rem 3rem;display:flex;justi
   .nav-center{display:none;}
   .inner{padding:3rem 1.5rem;}
   footer{padding:1.1rem 1.5rem;flex-direction:column;gap:.4rem;}
+  .more-strip{flex-direction:column;align-items:flex-start;}
 }
 </style>
 </head>
@@ -284,7 +299,7 @@ footer{border-top:1px solid var(--border);padding:1.2rem 3rem;display:flex;justi
     </div>
     <div class="hero-actions">
       <a href="#projects" class="btn btn-v">View Projects</a>
-      <a href="https://www.linkedin.com/in/jeelfaldu7/" target="_blank" id="resumeBtn" class="btn btn-r">Download Resume ↓</a>
+      <a href="https://www.linkedin.com/in/jeelfaldu7/" target="_blank" class="btn btn-r">Resume ↓</a>
       <a href="https://github.com/jeelfaldu7" target="_blank" class="btn btn-o">GitHub ↗</a>
       <a href="https://www.linkedin.com/in/jeelfaldu7/" target="_blank" class="btn btn-o">LinkedIn ↗</a>
     </div>
@@ -309,17 +324,17 @@ footer{border-top:1px solid var(--border);padding:1.2rem 3rem;display:flex;justi
       <div class="ab rl">
         <p>I hold a <strong>B.S. in Biology (cum laude, 3.6 GPA) from CSUSB</strong> and completed TripleTen's Data Science bootcamp. Two years teaching Organic and General Chemistry to 30+ students built the hypothesis-driven, rigorous thinking I bring to every ML problem.</p>
         <p>Since July 2024, I've shipped <strong>25+ end-to-end ML and analytics projects</strong> spanning NLP, deep learning, computer vision, time series, and production deployments across biotech, healthcare, finance, and media.</p>
-        <p>Certifications include <strong>Databricks Data Preparation for ML</strong> and <strong>Google AI Agents Intensive</strong>. Competed in 12 Code Jams — won 8, earned 3 Audience Awards and 4 Highest Judge Score recognitions.</p>
+        <p>Certifications include <strong>Databricks Data Preparation for ML</strong> and <strong>Google AI Agents Intensive</strong>. Competed in 12 Code Jams — won 8, earned 3 Audience Awards and 5 Highest Judge Score ( Winner) recognitions.</p>
         <p class="hl">// Trilingual: English · Hindi · Gujarati</p>
       </div>
       <div class="rv">
         <div class="skb"><div class="skbt">Languages & Core</div><div class="pills"><span class="pill">Python</span><span class="pill">SQL</span><span class="pill">Bash</span><span class="pill">Pandas</span><span class="pill">NumPy</span><span class="pill">SciPy</span><span class="pill">Statsmodels</span></div></div>
         <div class="skb"><div class="skbt">Machine Learning</div><div class="pills"><span class="pill">Scikit-learn</span><span class="pill">XGBoost</span><span class="pill">LightGBM</span><span class="pill">CatBoost</span><span class="pill">Random Forest</span><span class="pill">Ridge/Lasso</span><span class="pill">KNN</span><span class="pill">SHAP</span><span class="pill">GridSearchCV</span></div></div>
-        <div class="skb"><div class="skbt">Deep Learning & CV</div><div class="pills"><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">CNNs</span><span class="pill">ResNet50</span><span class="pill">EfficientNet</span><span class="pill">Transfer Learning</span><span class="pill">Image Augmentation</span></div></div>
-        <div class="skb"><div class="skbt">NLP & LLMs</div><div class="pills"><span class="pill">HuggingFace</span><span class="pill">BERT/DistilBERT/RoBERTa</span><span class="pill">spaCy</span><span class="pill">NLTK</span><span class="pill">TF-IDF</span><span class="pill">RAG</span><span class="pill">LangChain</span><span class="pill">OpenAI</span><span class="pill">Google Gemini</span><span class="pill">Prompt Engineering</span><span class="pill">Vector DBs</span><span class="pill">Embeddings</span></div></div>
+        <div class="skb"><div class="skbt">Deep Learning & CV</div><div class="pills"><span class="pill">PyTorch</span><span class="pill">TensorFlow</span><span class="pill">CNNs</span><span class="pill">ResNet50</span><span class="pill">EfficientNet</span><span class="pill">Transfer Learning</span></div></div>
+        <div class="skb"><div class="skbt">NLP & LLMs</div><div class="pills"><span class="pill">HuggingFace</span><span class="pill">BERT/DistilBERT/RoBERTa</span><span class="pill">spaCy</span><span class="pill">NLTK</span><span class="pill">TF-IDF</span><span class="pill">RAG</span><span class="pill">LangChain</span><span class="pill">OpenAI</span><span class="pill">Google Gemini</span><span class="pill">Prompt Engineering</span><span class="pill">Vector DBs</span></div></div>
         <div class="skb"><div class="skbt">MLOps & Deployment</div><div class="pills"><span class="pill">Docker</span><span class="pill">AWS (SageMaker/S3/EC2)</span><span class="pill">FastAPI</span><span class="pill">REST APIs</span><span class="pill">Streamlit</span><span class="pill">Plotly Dash</span><span class="pill">Render</span><span class="pill">Git</span></div></div>
-        <div class="skb"><div class="skbt">Analytics & Stats</div><div class="pills"><span class="pill">Matplotlib</span><span class="pill">Seaborn</span><span class="pill">Plotly</span><span class="pill">Tableau</span><span class="pill">Prophet</span><span class="pill">ARIMA/SARIMAX</span><span class="pill">A/B Testing</span><span class="pill">Hypothesis Testing</span><span class="pill">Time Series</span></div></div>
-        <div class="skb"><div class="skbt">Data Collection</div><div class="pills"><span class="pill">BeautifulSoup</span><span class="pill">Requests</span><span class="pill">Spotipy</span><span class="pill">Kaggle API</span><span class="pill">feedparser</span><span class="pill">Geopy</span></div></div>
+        <div class="skb"><div class="skbt">Analytics & Stats</div><div class="pills"><span class="pill">Matplotlib</span><span class="pill">Seaborn</span><span class="pill">Plotly</span><span class="pill">Tableau</span><span class="pill">Prophet</span><span class="pill">ARIMA/SARIMAX</span><span class="pill">Ruptures</span><span class="pill">A/B Testing</span><span class="pill">Hypothesis Testing</span></div></div>
+        <div class="skb"><div class="skbt">Data Collection</div><div class="pills"><span class="pill">BeautifulSoup</span><span class="pill">Requests</span><span class="pill">Spotipy</span><span class="pill">Kaggle API</span><span class="pill">FRED API</span><span class="pill">feedparser</span><span class="pill">Geopy</span></div></div>
         <div class="skb"><div class="skbt">Databases</div><div class="pills"><span class="pill">PostgreSQL</span><span class="pill">SQLite</span></div></div>
       </div>
     </div>
@@ -330,7 +345,7 @@ footer{border-top:1px solid var(--border);padding:1.2rem 3rem;display:flex;justi
   <div class="inner">
     <div class="sh rv">
       <div class="sec-label">02 — Projects</div>
-      <h2 class="sec-title">25+ projects.<br><em>Real results.</em></h2>
+      <h2 class="sec-title">8 wins.<br><em>Curated work.</em></h2>
     </div>
     <div class="fb rv">
       <button class="fbtn active" data-f="all">All</button>
@@ -344,31 +359,144 @@ footer{border-top:1px solid var(--border);padding:1.2rem 3rem;display:flex;justi
     </div>
     <div class="pg" id="pgrid">
 
-      <div class="pc" data-c="nlp dl jam"><div class="pt"><span class="pn">001</span><div class="br"><span class="bx bv">🏆 Capstone</span></div></div><h3>Biotech Trend Intelligence Platform</h3><div class="pm">Dec 2025 · Google AI Agents Intensive</div><p class="pd">AI-powered NLP pipeline automating trend extraction across 200+ unstructured biotech articles. KMeans clustering + cosine similarity. Streamlit dashboard for strategic stakeholder analysis.</p><div class="pr">30% data reliability · 50% preprocessing time</div><div class="stk"><span class="stag">Python</span><span class="stag">HuggingFace</span><span class="stag">KMeans</span><span class="stag">Streamlit</span><span class="stag">Google Gemini</span></div><div class="pl"><a href="https://github.com/jeelfaldu7/bio_project" target="_blank" class="plk">GitHub</a><a href="https://biotechtrendintelligence.streamlit.app/" target="_blank" class="plk">Live App</a></div></div>
+      <!-- 001 BIOTECH -->
+      <div class="pc" data-c="nlp dl jam">
+        <div class="pt"><span class="pn">001</span><div class="br"><span class="bx bv">🏆 Capstone</span></div></div>
+        <h3>Biotech Trend Intelligence Platform</h3>
+        <div class="pm">Dec 2025 · Google AI Agents Intensive</div>
+        <p class="pd">Automated intelligence platform processing 200+ unstructured biotech articles into ranked, decision-ready trend clusters across therapeutics, genomics, clinical development, and regulatory domains. Built for non-technical stakeholders to consume strategic insights directly.</p>
+        <span class="pr">+30% data reliability · −50% preprocessing time</span>
+        <div class="stk"><span class="stag">Python</span><span class="stag">HuggingFace</span><span class="stag">KMeans</span><span class="stag">Cosine Similarity</span><span class="stag">Google Gemini</span><span class="stag">Streamlit</span><span class="stag">Plotly</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/bio_project" target="_blank" class="plk">GitHub</a>
+          <a href="https://biotechtrendintelligence.streamlit.app/" target="_blank" class="plk live">Live App</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="ts eda jam"><div class="pt"><span class="pn">002</span><div class="br"><span class="bx bv">🥇 Jam Winner</span></div></div><h3>U.S. Consumer Behavior Under Inflation</h3><div class="pm">Feb 2026 · February Data Jam</div><p class="pd">Statistically proved post-COVID consumer behavior is a permanent structural shift. OLS regression revealed a 6x spike in prediction error confirming irreversible change in how Americans spend, save, and borrow.</p><div class="pr">6x prediction error spike · 2 structural breaks</div><div class="stk"><span class="stag">Prophet</span><span class="stag">Ruptures</span><span class="stag">OLS</span><span class="stag">FRED API</span><span class="stag">Statsmodels</span></div><div class="pl"><a href="https://github.com/hamedtaeb/US-Consumer-Behaviour" target="_blank" class="plk">GitHub</a><a href="https://docs.google.com/presentation/d/1qrmIKCsQfTuoeI4t9AtLnDgNgG4mPP1b/edit?usp=sharing" target="_blank" class="plk">Slides</a></div></div>
+      <!-- 002 US CONSUMER -->
+      <div class="pc" data-c="ts eda jam">
+        <div class="pt"><span class="pn">002</span><div class="br"><span class="bx ba">🥇 Jam Winner (Highest Score) </span></div></div>
+        <h3>U.S. Consumer Behavior Under Inflation</h3>
+        <div class="pm">Feb 2026 · DS/ML Code Jam · 7-person team</div>
+        <p class="pd">Statistically proved post-COVID consumer behavior is a permanent structural shift using 4 FRED macroeconomic indicators (2008–2026). OLS regression trained on pre-COVID data revealed a 6× spike in prediction error post-COVID, confirming irreversible change in how Americans spend, save, and borrow.</p>
+        <span class="pr">6× prediction error spike · 2 structural breaks detected</span>
+        <div class="stk"><span class="stag">Prophet</span><span class="stag">Ruptures</span><span class="stag">OLS</span><span class="stag">FRED API</span><span class="stag">Statsmodels</span><span class="stag">SciPy</span></div>
+        <div class="pl">
+          <a href="https://github.com/hamedtaeb/US-Consumer-Behaviour" target="_blank" class="plk">GitHub</a>
+          <a href="https://docs.google.com/presentation/d/1qrmIKCsQfTuoeI4t9AtLnDgNgG4mPP1b/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="nlp dl jam"><div class="pt"><span class="pn">003</span><div class="br"><span class="bx ba">🥇 Highest Score</span></div></div><h3>Transformer Sentiment Analysis</h3><div class="pm">Oct 2025 · October Code Pudding</div><p class="pd">Fine-tuned DistilBERT and RoBERTa for 5-class emotion classification in tweets and lyrics. GPU training, single vs. multi-label pipelines, emotion distribution visualizations.</p><div class="pr">35% nuanced emotion detection improvement</div><div class="stk"><span class="stag">HuggingFace</span><span class="stag">DistilBERT</span><span class="stag">RoBERTa</span><span class="stag">PyTorch</span><span class="stag">GPU</span></div><div class="pl"><a href="https://github.com/jeelfaldu7/transformer_sentiment_analysis" target="_blank" class="plk">GitHub</a><a href="https://docs.google.com/presentation/d/1Sncda6MnRxUlRdWBD-d6uk8F4sKItJY1kQqporFW19o/edit?usp=sharing" target="_blank" class="plk">Slides</a></div></div>
+      <!-- 003 CUSTOMER CHURN -->
+      <div class="pc" data-c="ml">
+        <div class="pt"><span class="pn">003</span><div class="br"><span class="bx bg">Best Metrics</span></div></div>
+        <h3>Customer Churn Prediction</h3>
+        <div class="pm">May 2025 · TripleTen</div>
+        <p class="pd">End-to-end churn prediction pipeline for a telecom provider. Tested 5 models with SMOTE class imbalance handling and threshold tuning to maximize recall on churned customers. SHAP explainability surfaced tenure, contract type, and service usage as primary drivers.</p>
+        <span class="pr">AUC-ROC 0.915 · Accuracy 89% · +15% vs baseline</span>
+        <div class="stk"><span class="stag">LightGBM</span><span class="stag">XGBoost</span><span class="stag">CatBoost</span><span class="stag">SMOTE</span><span class="stag">SHAP</span><span class="stag">Scikit-learn</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/customer_churn_forecasting_for_interconnect" target="_blank" class="plk">GitHub</a>
+          <a href="https://docs.google.com/presentation/d/1j6oYqd61E-VpjNKUmPFLZMcWpQeTWEzpy2WYOOyHp2g/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="nlp jam"><div class="pt"><span class="pn">004</span><div class="br"><span class="bx ba">🥇 Highest Score</span></div></div><h3>YouTube Sentiment Analysis</h3><div class="pm">Apr 2025 · April Code Pudding</div><p class="pd">MiniLM embeddings + logistic regression to predict YouTube comment sentiment at scale. Uncovered weak correlation between sentiment and like/dislike ratios revealing richer audience insights.</p><div class="pr">Sentiment vs. engagement mismatch discovered</div><div class="stk"><span class="stag">MiniLM</span><span class="stag">Logistic Regression</span><span class="stag">TextBlob</span><span class="stag">NLTK</span></div><div class="pl"><a href="https://github.com/betanight/youtube_sentiment_analysis" target="_blank" class="plk">GitHub</a><a href="https://docs.google.com/presentation/d/1iBAszTxmqfLIeaWwF3vqKxZdiX_8bmHXQ77mmS_cUSU/edit?usp=sharing" target="_blank" class="plk">Slides</a></div></div>
+      <!-- 004 TRANSFORMER SENTIMENT -->
+      <div class="pc" data-c="nlp dl jam">
+        <div class="pt"><span class="pn">004</span><div class="br"><span class="bx ba">🥇 Jam Winner (Highest Score) </span></div></div>
+        <h3>Transformer Sentiment Analysis</h3>
+        <div class="pm">Oct 2025 · October Code Pudding</div>
+        <p class="pd">Fine-tuned DistilBERT and RoBERTa for 5-class emotion classification in tweets and song lyrics using GPU training. Built both single-label and multi-label pipelines; multi-label approach captured nuanced co-occurring emotions that rule-based methods miss entirely.</p>
+        <span class="pr">+35% nuanced emotion detection vs rule-based</span>
+        <div class="stk"><span class="stag">HuggingFace</span><span class="stag">DistilBERT</span><span class="stag">RoBERTa</span><span class="stag">PyTorch</span><span class="stag">GPU Training</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/transformer_sentiment_analysis" target="_blank" class="plk">GitHub</a>
+          <a href="https://docs.google.com/presentation/d/1Sncda6MnRxUlRdWBD-d6uk8F4sKItJY1kQqporFW19o/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="ml"><div class="pt"><span class="pn">005</span><div class="br"></div></div><h3>Customer Churn Prediction</h3><div class="pm">May 2025 · TripleTen</div><p class="pd">End-to-end ML pipeline for telecom churn. 5 models tested with SMOTE class imbalance handling. LightGBM won. Key drivers: tenure, contract type, service usage. SHAP for explainability.</p><div class="pr">AUC-ROC 0.915 · Accuracy 89% · +15% vs baseline</div><div class="stk"><span class="stag">LightGBM</span><span class="stag">XGBoost</span><span class="stag">CatBoost</span><span class="stag">SMOTE</span><span class="stag">SHAP</span></div><div class="pl"><a href="https://github.com/jeelfaldu7/customer_churn_forecasting_for_interconnect" target="_blank" class="plk">GitHub</a><a href="https://docs.google.com/presentation/d/1j6oYqd61E-VpjNKUmPFLZMcWpQeTWEzpy2WYOOyHp2g/edit?usp=sharing" target="_blank" class="plk">Slides</a></div></div>
+      <!-- 005 GLOBAL HAPPINESS -->
+      <div class="pc" data-c="ml eda jam">
+        <div class="pt"><span class="pn">005</span><div class="br"><span class="bx ba">🥇 Jam Winner (Highest Score) </span></div></div>
+        <h3>Global Happiness Score Prediction</h3>
+        <div class="pm">Sep 2025 · September Code Pudding</div>
+        <p class="pd">Predicted happiness scores (2015–2023) across 150+ countries using GDP, social support, and life expectancy. Multiple regression models compared; Ridge Regression selected for generalization. SHAP confirmed governance and social factors outperform economic metrics as predictors.</p>
+        <span class="pr">R² 0.7713 · MAE 0.3838 · RMSE 0.5445</span>
+        <div class="stk"><span class="stag">Ridge Regression</span><span class="stag">SHAP</span><span class="stag">Scikit-learn</span><span class="stag">Plotly</span><span class="stag">Statsmodels</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/predicting_spotify_song_popularity" target="_blank" class="plk">GitHub</a>
+          <a href="https://docs.google.com/presentation/d/1A3hgyuCkqjp6dJm8ZPoT_h7FIyAkx_6QdewJxrM94xA/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="dash jam"><div class="pt"><span class="pn">006</span><div class="br"><span class="bx ba">🎖 Audience Award</span></div></div><h3>Spotify Interactive Dashboard</h3><div class="pm">Jun 2025 · June Code Pudding</div><p class="pd">Deployed Plotly Dash app exploring Spotify trends across genres and time. KMeans clustering, audio similarity search, interactive genre filters for technical and non-technical users.</p><div class="pr">Audience Award · Live on Render</div><div class="stk"><span class="stag">Plotly Dash</span><span class="stag">KMeans</span><span class="stag">PCA</span><span class="stag">Spotipy</span><span class="stag">Render</span></div><div class="pl"><a href="https://github.com/jeelfaldu7/june_code_jam" target="_blank" class="plk">GitHub</a><a href="https://june-code-jam.onrender.com/" target="_blank" class="plk">Live App</a><a href="https://docs.google.com/presentation/d/1i8ULFEhCbkcBysYaiiFAJunYZrbJozOYPduaQDFUfug/edit?usp=sharing" target="_blank" class="plk">Slides</a></div></div>
+      <!-- 006 TAXI FORECASTING -->
+      <div class="pc" data-c="ts ml">
+        <div class="pt"><span class="pn">006</span><div class="br"><span class="bx bg">Target Exceeded</span></div></div>
+        <h3>Sweet Lift Taxi Demand Forecasting</h3>
+        <div class="pm">Mar 2025 · TripleTen</div>
+        <p class="pd">Hourly taxi demand forecasting to improve driver allocation during peak hours. Compared 7 models including AR, ARMA, CatBoost, LightGBM, and Random Forest. Random Forest beat the target RMSE threshold and outperformed traditional time series baselines by a wide margin.</p>
+        <span class="pr">RMSE 43.87 (target ≤48) · 15–20% better than TS baselines</span>
+        <div class="stk"><span class="stag">Random Forest</span><span class="stag">CatBoost</span><span class="stag">LightGBM</span><span class="stag">ARMA</span><span class="stag">Statsmodels</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/model_predict_taxi_drivers" target="_blank" class="plk">GitHub</a>
+          <a href="https://docs.google.com/presentation/d/1lnJyTL45RRZ0tReSSPko4DDoaNF1DDpVDyrTTFB5VfM/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="nlp jam"><div class="pt"><span class="pn">007</span><div class="br"><span class="bx ba">🎖 Audience Award</span></div></div><h3>Wikipedia Bias Detection</h3><div class="pm">May 2025 · May Code Pudding</div><p class="pd">ML pipeline detecting linguistic bias in Wikipedia articles. Sentence-level classifiers with a neutrality scoring function using spaCy, NLTK, MiniLM embeddings, and ensemble models.</p><div class="pr">Captured subtle bias beyond sentiment rules</div><div class="stk"><span class="stag">spaCy</span><span class="stag">NLTK</span><span class="stag">MiniLM</span><span class="stag">XGBoost</span><span class="stag">SVM</span></div><div class="pl"><a href="https://github.com/jeelfaldu7/may_code_jam_pudding" target="_blank" class="plk">GitHub</a><a href="https://docs.google.com/presentation/d/1jC3B7cGLTfIN399vAbXA0I0UyhAYMGNB/edit?usp=sharing" target="_blank" class="plk">Slides</a></div></div>
+      <!-- 007 SPOTIFY DASHBOARD -->
+      <div class="pc" data-c="dash jam">
+        <div class="pt"><span class="pn">007</span><div class="br"><span class="bx ba">🎖 Audience Award</span></div></div>
+        <h3>Spotify Interactive Dashboard</h3>
+        <div class="pm">Jun 2025 · June Code Pudding · Deployed on Render</div>
+        <p class="pd">Full Plotly Dash app exploring Spotify music trends across genres and time periods. KMeans clustering groups songs by audio fingerprint; cosine similarity powers a track recommendation engine. Built for both technical and non-technical audiences — live and publicly accessible.</p>
+        <span class="pr">Audience Award · Live production deployment</span>
+        <div class="stk"><span class="stag">Plotly Dash</span><span class="stag">KMeans</span><span class="stag">PCA</span><span class="stag">Spotipy</span><span class="stag">Render</span><span class="stag">Cosine Similarity</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/june_code_jam" target="_blank" class="plk">GitHub</a>
+          <a href="https://june-code-jam.onrender.com/" target="_blank" class="plk live">Live App</a>
+          <a href="https://docs.google.com/presentation/d/1i8ULFEhCbkcBysYaiiFAJunYZrbJozOYPduaQDFUfug/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="eda jam"><div class="pt"><span class="pn">008</span><div class="br"><span class="bx ba">🎖 Audience Award</span></div></div><h3>IMDB Web Scraping & Genre Analysis</h3><div class="pm">Feb 2025 · February Code Pudding</div><p class="pd">Scraped and analyzed 100 movies and 100 actors for genre profitability and award predictors. Comedy highest-ROI genre. Nominations beat actor experience as award predictor.</p><div class="pr">Comedy = highest ROI · Nominations key to wins</div><div class="stk"><span class="stag">BeautifulSoup</span><span class="stag">Requests</span><span class="stag">Pandas</span><span class="stag">Seaborn</span></div><div class="pl"><a href="https://github.com/JohnFDwy/imdb_web_scraping" target="_blank" class="plk">GitHub</a><a href="https://docs.google.com/presentation/d/1jd70Kh01M4SDTLywlpXwu0wXWQdawaXA/edit?usp=sharing" target="_blank" class="plk">Slides</a></div></div>
+      <!-- 008 WIKIPEDIA BIAS -->
+      <div class="pc" data-c="nlp jam">
+        <div class="pt"><span class="pn">008</span><div class="br"><span class="bx ba">🎖 Audience Award</span></div></div>
+        <h3>Wikipedia Bias Detection</h3>
+        <div class="pm">May 2025 · May Code Pudding</div>
+        <p class="pd">Novel NLP pipeline detecting linguistic bias in Wikipedia articles at the sentence level. Built a neutrality scoring function using spaCy, NLTK, MiniLM embeddings, and ensemble classifiers. Captured subtle bias patterns that pure sentiment analysis cannot detect — a genuinely hard, socially relevant problem.</p>
+        <span class="pr">Bias captured beyond sentiment · Audience Award</span>
+        <div class="stk"><span class="stag">spaCy</span><span class="stag">NLTK</span><span class="stag">MiniLM</span><span class="stag">XGBoost</span><span class="stag">SVM</span><span class="stag">Embeddings</span></div>
+        <div class="pl">
+          <a href="https://github.com/jeelfaldu7/may_code_jam_pudding" target="_blank" class="plk">GitHub</a>
+          <a href="https://docs.google.com/presentation/d/1jC3B7cGLTfIN399vAbXA0I0UyhAYMGNB/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
-      <div class="pc" data-c="ml eda jam"><div class="pt"><span class="pn">009</span><div class="br"><span class="bx ba">🥇 Highest Score</span></div></div><h3>Global Happiness Score Prediction</h3><div class="pm">Sep 2025 · September Code Pudding</div><p class="pd">Predicted happiness scores (2015-2023) across 150+ countries using GDP, social support, life expectancy. Ridge Regression selected after model comparison. SHAP for interpretability.</p><div class="pr">R2 0.7713 · MAE 0.3838 · RMSE 0.5445</div><div class="stk"><span class="stag">Ridge Regression</span><span class="stag">SHAP</span><span class="stag">Scikit-learn</span><span class="stag">Plotly</span></div><div class="pl"><a href="https://github.com/jeelfaldu7/predicting_spotify_song_popularity" target="_blank" class="plk">GitHub</a></div></div>
-
-      <div class="pc" data-c="nlp ml"><div class="pt"><span class="pn">010</span><div class="br"></div></div><h3>Film Junky — Movie Review Classifier</h3><div class="pm">Apr 2025 · TripleTen</div><p class="pd">Sentiment classifier for IMDB reviews. Tested LogReg, LightGBM, and BERT with TF-IDF and spaCy preprocessing. Logistic Regression + spaCy achieved best F1 for automated moderation.</p><div class="pr">F1 Score = 0.88</div><div class="stk"><span class="stag">spaCy</span><span class="stag">TF-IDF</span><span class="stag">BERT</span><span class="stag">LightGBM</span></div><div class="pl"><a href="https://github.com/jeelfaldu7/model_classify_imdb_reviews" target="_blank" class="plk">GitHub</a></div></div>
-
-      <div class="pc" data-c="ts ml"><div class="pt"><span class="pn">011</span><div class="br"></div></div><h3>Sweet Lift Taxi Demand Forecasting</h3><div class="pm">Mar 2025 · TripleTen</div><p class="pd">Hourly taxi demand forecasting for driver allocation. Compared 7 models including ARMA, CatBoost, LightGBM, Random Forest. Random Forest exceeded the 48 RMSE target.</p><div class="pr">RMSE = 43.87 · 15-20% over traditional TS</div><div class="stk"><span class="stag">Random Forest</span><span class="stag">CatBoost</span><span class="stag">ARMA</span><span class="stag">Statsmodels</span></div><div class="pl"><a href="https://github.com/jeelfaldu7/model_predict_taxi_drivers" target="_blank" class="plk">GitHub</a><a href="https://docs.google.com/presentation/d/1lnJyTL45RRZ0tReSSPko4DDoaNF1DDpVDyrTTFB5VfM/edit?usp=sharing" target="_blank" class="plk">Slides</a></div></div>
-
-      <div class="pc" data-c="eda dash jam"><div class="pt"><span class="pn">012</span><div class="br"><span class="bx bv">🥇 Code Jam Win</span></div></div><h3>DayTrippr — U.S. Road Trip Optimizer</h3><div class="pm">Jul 2025 · July Code Pudding</div><p class="pd">MVP app recommending optimized sightseeing routes across 10 U.S. landmarks using geospatial analysis. Reduced total driving distance significantly with interactive Mapbox visualization.</p><div class="pr">4,600 km saved · 78 driving hours reduced</div><div class="stk"><span class="stag">Python</span><span class="stag">Geopy</span><span class="stag">Plotly</span><span class="stag">Dash</span><span class="stag">Mapbox</span></div><div class="pl"><a href="https://github.com/ValTsan/dcm-july-codejam" target="_blank" class="plk">GitHub</a><a href="https://daytrippr.netlify.app/" target="_blank" class="plk">Live App</a><a href="https://docs.google.com/presentation/d/1jC3B7cGLTfIN399vAbXA0I0UyhAYMGNB/edit?usp=sharing" target="_blank" class="plk">Slides</a></div></div>
+      <!-- 009 DAYTRIPPR -->
+      <div class="pc" data-c="eda dash jam">
+        <div class="pt"><span class="pn">009</span><div class="br">
+        <h3>DayTrippr — U.S. Road Trip Optimizer</h3>
+        <div class="pm">Jul 2025 · July Code Pudding · Deployed on Netlify</div>
+        <p class="pd">Geospatial MVP app recommending optimized sightseeing routes across 10 major U.S. landmarks. Built a baseline random route model and an optimized route model; the optimized version reduced total travel distance by ~35% and saved 78 hours of driving time.</p>
+        <span class="pr">−4,600 km · −78 driving hours · 35% distance reduction</span>
+        <div class="stk"><span class="stag">Python</span><span class="stag">Geopy</span><span class="stag">Plotly</span><span class="stag">Dash</span><span class="stag">Mapbox</span><span class="stag">NumPy</span></div>
+        <div class="pl">
+          <a href="https://github.com/ValTsan/dcm-july-codejam" target="_blank" class="plk">GitHub</a>
+          <a href="https://daytrippr.netlify.app/" target="_blank" class="plk live">Live App</a>
+          <a href="https://docs.google.com/presentation/d/1fY2jI8WJhaL3DNLfh837xCb4a1KAMMSGYPu0HU5pAPI/edit?usp=sharing" target="_blank" class="plk">Slides</a>
+        </div>
+      </div>
 
     </div>
+
+    <!-- MORE PROJECTS STRIP -->
+    <div class="more-strip rv">
+      <div class="more-label"><strong>16+ more projects on GitHub</strong> — Smart Budget Planner · Spotify Popularity Model · Film Junky Sentiment · IMDB Scraping · YouTube Sentiment · Gold Recovery · Oil Well Selection · Insurance ML · Beta Bank Churn · Megaline Plans · Game Sales Analysis · Zuber Market Analysis · Car Ads Dashboard · Instacart EDA · Megaline Revenue</div>
+      <div class="more-links">
+        <a href="https://github.com/jeelfaldu7" target="_blank" class="more-tag">All Projects ↗</a>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -388,7 +516,7 @@ footer{border-top:1px solid var(--border);padding:1.2rem 3rem;display:flex;justi
       <div class="think-card">
         <span class="think-num">02</span>
         <div class="think-title">Explain, not just predict</div>
-        <p class="think-body">A model that stakeholders do not trust does not get used. I default to SHAP, feature importance, and plain-language summaries alongside every metric. Accuracy without interpretability is incomplete.</p>
+        <p class="think-body">A model that stakeholders don't trust doesn't get used. I default to SHAP, feature importance, and plain-language summaries alongside every metric. Accuracy without interpretability is incomplete.</p>
         <span class="think-tag">// Stakeholder-first</span>
       </div>
       <div class="think-card">
@@ -408,10 +536,22 @@ footer{border-top:1px solid var(--border);padding:1.2rem 3rem;display:flex;justi
       <h2 class="sec-title">Where I've<br><em>worked.</em></h2>
     </div>
     <div class="tl rv">
-      <div class="tli"><div><div class="tp">2024 — Present</div><div class="tc">Think Together · Riverside, CA</div></div><div class="tr"><h3>Operations & Data Assistant</h3><p>Managing operational data workflows, maintaining data quality standards, and supporting analytics initiatives. Using SQL and Python to automate reporting and surface actionable insights for program management.</p></div></div>
-      <div class="tli"><div><div class="tp">2023 — 2024</div><div class="tc">Zidian Partners</div></div><div class="tr"><h3>CRM Data Manager</h3><p>Managed CRM data pipelines ensuring integrity and enabling segmentation for business development. Built dashboards and automated reporting workflows reducing manual overhead.</p></div></div>
-      <div class="tli"><div><div class="tp">Aug – Sep 2025</div><div class="tc">Insight7 / TripleTen</div></div><div class="tr"><h3>Data Scientist Externship</h3><p>Applied end-to-end ML workflows on real educational platform data — AI tutoring call metrics and student engagement modeling. Built Gradient Boosting and Random Forest models to identify key engagement drivers.</p></div></div>
-      <div class="tli"><div><div class="tp">2021 — 2023</div><div class="tc">CSUSB</div></div><div class="tr"><h3>Chemistry Instructor</h3><p>Taught Organic and General Chemistry to 30+ students. Applied biostatistics and quantitative methods — the scientific foundation that now underpins rigorous data science work in biotech and healthcare.</p></div></div>
+      <div class="tli">
+        <div><div class="tp">2024 — Present</div><div class="tc">Think Together · Riverside, CA</div></div>
+        <div class="tr"><h3>Operations & Data Assistant</h3><p>Managing operational data workflows, maintaining data quality standards, and supporting analytics initiatives. Using SQL and Python to automate reporting and surface actionable insights for program management.</p></div>
+      </div>
+      <div class="tli">
+        <div><div class="tp">Aug – Sep 2025</div><div class="tc">Insight7 / TripleTen</div></div>
+        <div class="tr"><h3>Data Scientist Externship</h3><p>Applied end-to-end ML workflows on real educational platform data — AI tutoring call metrics and student engagement modeling. Built Gradient Boosting and Random Forest models to identify key engagement drivers. Cleaned and engineered features from noisy, unstructured datasets; iterated on modeling decisions with stakeholder feedback.</p></div>
+      </div>
+      <div class="tli">
+        <div><div class="tp">2023 — 2024</div><div class="tc">Zidian Partners</div></div>
+        <div class="tr"><h3>CRM Data Manager</h3><p>Managed CRM data pipelines ensuring integrity and enabling segmentation for business development. Built dashboards and automated reporting workflows reducing manual overhead.</p></div>
+      </div>
+      <div class="tli">
+        <div><div class="tp">2021 — 2023</div><div class="tc">CSUSB</div></div>
+        <div class="tr"><h3>Chemistry Instructor</h3><p>Taught Organic and General Chemistry to 30+ students. Applied biostatistics and quantitative methods — the scientific foundation that now underpins rigorous data science work in biotech and healthcare.</p></div>
+      </div>
     </div>
     <div class="sec-label rv" style="margin-top:2.5rem;">Certifications & Education</div>
     <div class="cg rv">
