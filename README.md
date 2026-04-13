@@ -1,4 +1,4 @@
-# 🌐 jeelfaldu7.github.io — Personal Portfolio
+# 🌐 Personal Portfolio
 
 <div align="center">
 
